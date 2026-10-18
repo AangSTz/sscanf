@@ -17,14 +17,14 @@ jobs:
   build-windows-release:
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7.0.1
         with:
           clean: true
           submodules: recursive
           fetch-depth: 0
 
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v7
 
       - name: Install CMake
         uses: lukka/get-cmake@latest
@@ -42,7 +42,7 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release .. -A Win32
           cmake --build . --config Release
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: sscanf-win-release
           path: build/Release/sscanf.dll
@@ -50,7 +50,7 @@ jobs:
   build-linux-release:
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7.0.1
         with:
           clean: true
           submodules: recursive
@@ -62,7 +62,7 @@ jobs:
           sudo apt-get install g++-multilib
 
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v7
 
       - name: Install CMake
         uses: lukka/get-cmake@latest
@@ -91,7 +91,7 @@ jobs:
           mv ./libsscanf.so ./sscanf.so
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: sscanf-linux-release
           path: build/sscanf.so
