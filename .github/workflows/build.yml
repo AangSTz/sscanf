@@ -17,14 +17,14 @@ jobs:
   build-windows-release:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v3
         with:
           clean: true
           submodules: recursive
           fetch-depth: 0
 
       - name: Setup Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v2
 
       - name: Install CMake
         uses: lukka/get-cmake@v.3.23.2
@@ -40,15 +40,15 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release .. -G "Visual Studio 16 2019" -A Win32
           cmake --build . --config Release
       - name: Upload artifacts
-        uses: actions/upload-artifact@v7.0.2
+        uses: actions/upload-artifact@v3
         with:
           name: sscanf-win-release
           path: build/Release/sscanf.dll
 
   build-linux-release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v3
         with:
           clean: true
           submodules: recursive
@@ -60,7 +60,7 @@ jobs:
           sudo apt-get install g++-multilib
 
       - name: Setup Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v2
 
       - name: Install CMake
         uses: lukka/get-cmake@v.3.23.2
@@ -87,7 +87,7 @@ jobs:
           mv ./libsscanf.so ./sscanf.so
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v7.0.2
+        uses: actions/upload-artifact@v3
         with:
           name: sscanf-linux-release
           path: build/sscanf.so
