@@ -1,4 +1,4 @@
-buildme: Build
+name: Build
 
 on:
   workflow_dispatch:
@@ -39,7 +39,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=Release .. -A Win32n32
+          cmake -DCMAKE_BUILD_TYPE=Release .. -A Win32
           cmake --build . --config Release
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
